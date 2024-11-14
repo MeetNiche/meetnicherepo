@@ -1,8 +1,9 @@
 package com.product.meetniche.model;
 
-
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import jakarta.persistence.*;
-import lombok.*;
 
 @Data
 @NoArgsConstructor
@@ -15,20 +16,24 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false, unique = true)
+    @Column(unique = true, nullable = false)
     private String username;
 
-    @Column(nullable = false, unique = true)
+    @Column(nullable = false)
     private String email;
 
     @Column(nullable = false)
     private String password;
 
     @Enumerated(EnumType.STRING)
-    @Column(nullable = false)
     private Role role;
 
+    // New profile fields
+    private String bio;
+    private String profilePicture; // URL or path to the profile picture
+
     public enum Role {
-        INFLUENCER, FOLLOWER
+        FOLLOWER,
+        INFLUENCER
     }
 }
